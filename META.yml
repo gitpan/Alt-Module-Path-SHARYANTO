@@ -23,7 +23,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Alt-Module-Path-SHARYANTO
   homepage: https://metacpan.org/release/Alt-Module-Path-SHARYANTO
   repository: git://github.com/sharyanto/perl-Alt-Module-Path-SHARYANTO.git
-version: 0.01
+version: 0.02
 x_Dist_Zilla:
   perl:
     version: 5.018001
