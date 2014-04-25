@@ -1,7 +1,7 @@
 package Alt::Module::Path::SHARYANTO;
 use base qw(Alt::Base);
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.13'; # VERSION
 
 1;
 # ABSTRACT: SHARYANTO's alternate implementation of Module::Path
@@ -18,7 +18,11 @@ Alt::Module::Path::SHARYANTO - SHARYANTO's alternate implementation of Module::P
 
 =head1 VERSION
 
-version 0.02
+version 0.13
+
+=head1 RELEASE DATE
+
+2014-04-25
 
 =head1 DESCRIPTION
 

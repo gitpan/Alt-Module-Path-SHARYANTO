@@ -9,7 +9,7 @@ require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.13'; # VERSION
 
 my $SEPARATOR;
 
@@ -91,7 +91,11 @@ Module::Path - Get the path to a locally installed module
 
 =head1 VERSION
 
-version 0.02
+version 0.13
+
+=head1 RELEASE DATE
+
+2014-04-25
 
 =head1 SYNOPSIS
 

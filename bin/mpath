@@ -8,7 +8,7 @@ use Getopt::Long qw(GetOptions);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.13'; # VERSION
 
 my %opts;
 GetOptions(\%opts,
@@ -89,7 +89,7 @@ mpath - Display the path to a perl module (installed locally)
 
 =head1 VERSION
 
-version 0.02
+version 0.13
 
 =head1 DESCRIPTION
 
@@ -100,13 +100,13 @@ If one of the module wasn't found, mpath will exit with the exit code 1 and
 print the following message (you can silence it with the option B<--quiet>):
 
   % mpath Foo::Bar
-  Foo::Bar not found
+  mpath: Foo::Bar not found
 
 or:
 
   % mpath Moose Foo::Bar
-  /usr/local/lib/perl5/site_perl/5.16.0/darwin-2level/Moose.pm
-  Foo::Bar not found
+  Moose    /usr/local/lib/perl5/site_perl/5.16.0/darwin-2level/Moose.pm
+  mpath: Foo::Bar not found
 
 =head1 USAGE
 
@@ -134,33 +134,35 @@ Print this help message and exit.
 
 =item B<-f>, B<--full>
 
-Print module name.
+Print module name before the path. For convenience this is turned on by default
+if there are more than one argument (but you can still turn it off using
+C<--nofull>).
 
 =item B<-q>, B<--quiet>
 
 Don't print any error when one of the module requested could not be found.
 
-=item C<--abs>
+=item B<--abs>
 
 Absolutize paths.
 
-=item C<--all>
+=item B<--all>
 
 Find all found paths in C<@INC> instead of the first one.
 
-=item C<--[no]find-pm>
+=item B<--[no]find-pm>
 
 Find C<.pm> files. Default is on.
 
-=item C<--[no]find-pmc>
+=item B<--[no]find-pmc>
 
 Find C<.pmc> files. Default is on.
 
-=item C<--[no]find-pod>
+=item B<--[no]find-pod>
 
 Find C<.pod> files.
 
-=item C<--pod>
+=item B<--pod>
 
 Equivalent to C<--find-pod --nofind-pm --nofind-pmc>.
 
