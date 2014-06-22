@@ -1,7 +1,7 @@
 package Alt::Module::Path::SHARYANTO;
 use base qw(Alt::Base);
 
-our $VERSION = '0.13'; # VERSION
+our $VERSION = '0.13.1'; # VERSION
 
 1;
 # ABSTRACT: SHARYANTO's alternate implementation of Module::Path
@@ -18,11 +18,7 @@ Alt::Module::Path::SHARYANTO - SHARYANTO's alternate implementation of Module::P
 
 =head1 VERSION
 
-version 0.13
-
-=head1 RELEASE DATE
-
-2014-04-25
+This document describes version 0.13.1 of Alt::Module::Path::SHARYANTO (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
 
 =head1 DESCRIPTION
 

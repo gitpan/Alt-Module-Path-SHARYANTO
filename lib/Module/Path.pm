@@ -9,7 +9,10 @@ require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
 
-our $VERSION = '0.13'; # VERSION
+our $VERSION = '0.13.1'; # VERSION
+our $DATE = '2014-06-22'; # DATE
+
+our $ALT = 'SHARYANTO';
 
 my $SEPARATOR;
 
@@ -30,18 +33,12 @@ sub module_path {
     $opts->{find_pm}  //= 1;
     $opts->{find_pmc} //= 1;
     $opts->{find_pod} //= 0;
+    $opts->{find_prefix} //= 0;
 
     require Cwd if $opts->{abs};
 
     my @res;
-    my $add_res = sub {
-        my $path = shift;
-        if (-f $path) {
-            push @res, $opts->{abs} ? Cwd::abs_path($path) : $path;
-            return 1;
-        }
-        0;
-    };
+    my $add = sub { push @res, $opts->{abs} ? Cwd::abs_path($_[0]) : $_[0] };
 
     my $relpath;
 
@@ -53,14 +50,33 @@ sub module_path {
         next if ref($dir);
 
         my $prefix = $dir . $SEPARATOR . $relpath;
+        if ($opts->{find_prefix}) {
+            if (-d $prefix) {
+                $add->($prefix);
+                last unless $opts->{all};
+                next;
+            }
+        }
         if ($opts->{find_pmc}) {
-            last if $add_res->($prefix . ".pmc") && !$opts->{all};
+            my $file = $prefix . ".pmc";
+            if (-f $file) {
+                $add->($file);
+                last unless $opts->{all};
+            }
         }
         if ($opts->{find_pm}) {
-            last if $add_res->($prefix . ".pm" ) && !$opts->{all};
+            my $file = $prefix . ".pm";
+            if (-f $file) {
+                $add->($file);
+                last unless $opts->{all};
+            }
         }
         if ($opts->{find_pod}) {
-            last if $add_res->($prefix . ".pod") && !$opts->{all};
+            my $file = $prefix . ".pod";
+            if (-f $file) {
+                $add->($file);
+                last unless $opts->{all};
+            }
         }
     }
 
@@ -91,11 +107,7 @@ Module::Path - Get the path to a locally installed module
 
 =head1 VERSION
 
-version 0.13
-
-=head1 RELEASE DATE
-
-2014-04-25
+This document describes version 0.13.1 of Module::Path (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
 
 =head1 SYNOPSIS
 

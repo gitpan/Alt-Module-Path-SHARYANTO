@@ -8,7 +8,7 @@ use Getopt::Long qw(GetOptions);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
-our $VERSION = '0.13'; # VERSION
+our $VERSION = '0.13.1'; # VERSION
 
 my %opts;
 GetOptions(\%opts,
@@ -17,10 +17,11 @@ GetOptions(\%opts,
            'full|f!',
            'abs',
            'all',
-           'find-pm!'  => \$opts{find_pm},
-           'find-pmc!' => \$opts{find_pmc},
-           'find-pod!' => \$opts{find_pod},
-           'pod'       => sub {
+           'find-prefix|p!' => \$opts{find_prefix},
+           'find-pm!'       => \$opts{find_pm},
+           'find-pmc!'      => \$opts{find_pmc},
+           'find-pod!'      => \$opts{find_pod},
+           'pod' => sub {
                $opts{find_pod} = 1;
                $opts{find_pm}  = 0;
                $opts{find_pmc} = 0;
@@ -44,11 +45,12 @@ $opts{full} //= @ARGV > 1 ? 1:0;
 my $all_found = 1;
 
 my %mpopts = (
-    abs      => $opts{abs},
-    all      => $opts{all},
-    find_pm  => $opts{find_pm},
-    find_pmc => $opts{find_pmc},
-    find_pod => $opts{find_pod},
+    abs         => $opts{abs},
+    all         => $opts{all},
+    find_prefix => $opts{find_prefix},
+    find_pm     => $opts{find_pm},
+    find_pmc    => $opts{find_pmc},
+    find_pod    => $opts{find_pod},
 );
 
 for my $module (@ARGV) {
@@ -89,7 +91,7 @@ mpath - Display the path to a perl module (installed locally)
 
 =head1 VERSION
 
-version 0.13
+This document describes version 0.13.1 of mpath (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
 
 =head1 DESCRIPTION
 
@@ -149,6 +151,11 @@ Absolutize paths.
 =item B<--all>
 
 Find all found paths in C<@INC> instead of the first one.
+
+=item B<--[no]find-prefix>, B<-p>
+
+Find module prefixes (e.g. When there is a module Foo::Bar, searching Foo will
+return the directory). Default is off.
 
 =item B<--[no]find-pm>
 
