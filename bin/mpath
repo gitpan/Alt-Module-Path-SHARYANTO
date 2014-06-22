@@ -4,19 +4,18 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Getopt::Long qw(GetOptions);
+use Getopt::Long qw(:config auto_help auto_version bundling);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
-our $VERSION = '0.13.1'; # VERSION
+our $VERSION = '0.13.2'; # VERSION
 
 my %opts;
 GetOptions(\%opts,
-           'help|h|?',
            'quiet|q',
            'full|f!',
-           'abs',
-           'all',
+           'abs|P',
+           'all|a',
            'find-prefix|p!' => \$opts{find_prefix},
            'find-pm!'       => \$opts{find_pm},
            'find-pmc!'      => \$opts{find_pmc},
@@ -29,13 +28,7 @@ GetOptions(\%opts,
        )
     or pod2usage 2;
 
-if ($opts{help}) {
-    pod2usage(
-        -verbose => 2,
-        -exitval => 0,
-    )
-}
-elsif (!@ARGV) {
+if (!@ARGV) {
     warn "mpath: Please specify at least one module\n";
     exit 99;
 }
@@ -91,7 +84,7 @@ mpath - Display the path to a perl module (installed locally)
 
 =head1 VERSION
 
-This document describes version 0.13.1 of mpath (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
+This document describes version 0.13.2 of mpath (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
 
 =head1 DESCRIPTION
 

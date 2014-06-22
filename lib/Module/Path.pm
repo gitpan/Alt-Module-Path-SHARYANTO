@@ -9,7 +9,7 @@ require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
 
-our $VERSION = '0.13.1'; # VERSION
+our $VERSION = '0.13.2'; # VERSION
 our $DATE = '2014-06-22'; # DATE
 
 our $ALT = 'SHARYANTO';
@@ -54,7 +54,6 @@ sub module_path {
             if (-d $prefix) {
                 $add->($prefix);
                 last unless $opts->{all};
-                next;
             }
         }
         if ($opts->{find_pmc}) {
@@ -107,7 +106,7 @@ Module::Path - Get the path to a locally installed module
 
 =head1 VERSION
 
-This document describes version 0.13.1 of Module::Path (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
+This document describes version 0.13.2 of Module::Path (from Perl distribution Alt-Module-Path-SHARYANTO), released on 2014-06-22.
 
 =head1 SYNOPSIS
 

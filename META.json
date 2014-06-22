@@ -54,7 +54,7 @@
          "web" : "https://github.com/sharyanto/perl-Alt-Module-Path-SHARYANTO"
       }
    },
-   "version" : "0.13.1",
+   "version" : "0.13.2",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
